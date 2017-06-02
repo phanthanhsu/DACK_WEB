@@ -1,0 +1,18 @@
+﻿@model ShopConnection.LoaiSanPham
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminIndex.cshtml";
+}
+
+<div>
+    @using (Html.BeginForm("Edit", "LoaiSanPham", FormMethod.Post, new { id = Model.MaLoaiSP }))
+    {
+        <label>Mã Loại Sản Phẩm:</label>
+        <input name="MaLoaiSP" type="text" readonly value="@Model.MaLoaiSP" required />
+        <label>Tên Sản Phẩm:</label>
+        <input name="TenLoaiSanPham" type="text" value="@Model.TenLoaiSanPham" required />
+        <input name="TinhTrang" type="hidden" value="@Model.TinhTrang" required />
+
+        <input type="submit" value="Thêm Loại Sản Phẩm" />
+    }
+</div>

@@ -1,0 +1,13 @@
+﻿@model IEnumerable<ShopConnection.LoaiSanPham>
+
+@{
+    Layout = null;
+}
+
+<ul class="dropdown-menu">
+    @foreach (var item in Model)
+    {
+        <li><a href="~/ListProduct/ListOFType/@item.MaLoaiSP">@item.TenLoaiSanPham</a></li>
+    }
+</ul>
+

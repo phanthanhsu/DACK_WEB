@@ -1,0 +1,123 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <title>Admin - Shop phụ kiện thời trang online</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Public/css/bootstrap.css" rel="stylesheet">
+    <link href="~/Public/css/custom-styles.css" rel="stylesheet">
+    <link href="~/Public/css/image-effects.css" rel="stylesheet">
+    
+    <link href="~/Public/css/normalize.css" rel="stylesheet">
+    <link href="~/Public/css/component.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Public/css/font-awesome.css">
+    <link rel="stylesheet" href="~/Public/css/font-awesome-ie7.css">
+
+    <script src="~/Public/ckeditor/ckeditor.js"></script>
+    <script src="~/Public/js/html5shiv.js"></script>
+    <script src="~/Public/js/respond.min.js"></script>
+    <script src="~/Public/js/modernizr.custom.js"></script>
+
+</head>
+
+<body>
+    <div class="container page-styling">
+        <div class="header-wrapper">
+            <div class="site-name">
+                <h1>@Html.ActionLink("Admin - Shop Shine & Shop Star", "index", "Admin")</h1>
+            </div>
+        </div>
+        <div class="menu">
+            <div class="navbar">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav ">
+                        <li>
+                            @Html.ActionLink("Admin", "index", "Admin")
+                        </li>
+                        <li class="dropdown ">
+                            <a href="~/#" class="dropdown-toggle active" data-toggle="dropdown">Danh Mục Quản Lý <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Sản Phẩm", "index", "SanPham")</li>
+                                <li>@Html.ActionLink("Loại Sản Phẩm", "index", "LoaiSanPham")</li>
+                            </ul>
+                        </li>
+                        <li>@Html.ActionLink("Thống Kê", "", "")</li>
+                        <li>@Html.ActionLink("Đơn hàng", "", "")</li>
+                    </ul>
+
+                </div><!--/.navbar-collapse -->
+
+            </div>
+            <div class="mini-menu">
+                <label>
+                    <select class="selectnav">
+                        <option value="#" selected="">Home</option>
+                        <option value="#">About</option>
+                        <option value="#">→ Another action</option>
+                        <option value="#">→ Something else here</option>
+                        <option value="#">→ Another action</option>
+                        <option value="#">→ Something else here</option>
+                        <option value="#">Services</option>
+                        <option value="#">Portfolio</option>
+                        <option value="#">Contact</option>
+                    </select>
+                </label>
+            </div>
+          </div>
+            <div style="margin-bottom: 20px;" class="ruler"></div>
+            <!--Content-->
+            @RenderBody()
+            <!-- /container -->
+            <div class="lines" style="margin-top: 10px;">
+                <div class="more-btn">
+                    <a class="btn">Admin</a>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="~/Public/js/jquery-1.9.1.js"></script>
+    <script src="~/Public/js/bootstrap.js"></script>
+    <script src="~/Public/js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <script src="~/Public/js/masonry.pkgd.min.js"></script>
+    <script src="~/Public/js/imagesloaded.js"></script>
+    <script src="~/Public/js/classie.js"></script>
+    <script src="~/Public/js/AnimOnScroll.js"></script>
+
+    <script>
+      new AnimOnScroll( document.getElementById( 'grid' ), {
+        minDuration : 0.4,
+        maxDuration : 0.7,
+        viewportFactor : 0.2
+      } );
+    </script>
+
+
+</body>
+</html>

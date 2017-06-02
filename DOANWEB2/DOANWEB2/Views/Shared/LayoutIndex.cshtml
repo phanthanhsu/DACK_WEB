@@ -1,0 +1,200 @@
+﻿
+@{
+    ViewBag.Title = "LayoutIndex";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <title>Shop phụ kiện thời trang online</title>
+
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Public/css/bootstrap.css" rel="stylesheet">
+    <link href="~/Public/css/custom-styles.css" rel="stylesheet">
+    <link href="~/Public/css/image-effects.css" rel="stylesheet">
+
+    <link href="~/Public/css/normalize.css" rel="stylesheet">
+    <link href="~/Public/css/component.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Public/css/font-awesome.css">
+    <link rel="stylesheet" href="~/Public/css/font-awesome-ie7.css">
+
+    <script src="~/Public/js/html5shiv.js"></script>
+    <script src="~/Public/js/respond.min.js"></script>
+    <script src="~/Public/js/modernizr.custom.js"></script>
+
+
+</head>
+
+<body>
+    <div class="container page-styling">
+        <div class="header-wrapper">
+            <div class="site-name">
+                <h1>@Html.ActionLink("Shop Shine & Shop Star","index","Home")</h1>
+            </div>
+            <div class="menu">
+                <div class="navbar">
+
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav ">
+                            <li>
+                                @Html.ActionLink("Home", "index", "Home")
+                            </li>
+                            <li class="dropdown ">
+                                <a href="#" class="dropdown-toggle active" data-toggle="dropdown">Danh Mục Sản Phẩm <b class="caret"></b></a>
+                                @Html.Action("TypeProduct", "Menu")
+                            </li>
+                            <li>@Html.ActionLink("Khuyến Mãi", "", "")</li>
+                            <li>@Html.ActionLink("Chăm Sóc Khách Hàng", "", "")</li>
+                            <li>@Html.ActionLink("Liên Hệ", "contact", "Home")</li>
+                            @Html.Partial("_LoginPartial")
+                            @*<li>@Html.ActionLink("Đăng Nhập", "Login", "Account")</li>*@
+                            @*<li>@Html.ActionLink("Đăng ký", "Register", "Account")</li>*@
+                        </ul>
+
+                    </div><!--/.navbar-collapse -->
+
+                </div>
+                <div class="mini-menu">
+                    <label>
+                        <select class="selectnav">
+                            <option value="~/Views/Home/Index.cshtml" selected="">Home</option>
+                            <option value="#">About</option>
+                            <option value="#">→ Another action</option>
+                            <option value="#">→ Something else here</option>
+                            <option value="#">→ Another action</option>
+                            <option value="#">→ Something else here</option>
+                            <option value="#">Services</option>
+                            <option value="#">Portfolio</option>
+                            <option value="#">Contact</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="banner">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img src="~/Public/img/banner-img.png" alt="" class="">
+                        <div class="carousel-caption">
+                            <i class="fw-icon-pencil"></i>
+                            <h2>Corem ipsum</h2>
+                            <h1>sit amet vivamus</h1>
+                            <a href="#" class="btn"> more info</a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="~/Public/img/banner-img.png" alt="">
+                        <div class="carousel-caption">
+                            <i class="fw-icon-pencil"></i>
+                            <h2>Corem ipsum</h2>
+                            <h1>sit amet vivamus</h1>
+                            <a href="#" class="btn"> more info</a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="~/Public/img/banner-img.png" alt="">
+                        <div class="carousel-caption">
+                            <i class="fw-icon-pencil"></i>
+                            <h2>Corem ipsum</h2>
+                            <h1>sit amet vivamus</h1>
+                            <a href="#" class="btn"> more info</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Controls -->
+                <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </div>
+        </div>
+
+        <div style="margin-top: 20px;" class="ruler"></div>
+        <div class="search">
+            <form>
+                <input type="text" id="tb_search" name="Key" placeholder="Tìm kiếm" />
+                <input type="submit" style="background: url(../../Public/img/button-search.png); padding: 0; margin: 0; border: none; width: 11.5%; float: right; height: 40px;" value="🔎" />
+            </form>
+        </div>
+        <div class="ruler"></div>
+        <!--Content-->
+        @RenderSection("scripts", required: false)
+        @RenderBody()
+        <!-- /container -->
+        <div class="content-wrap centering">
+            <div class="main-title">
+                <ul class="grid effect-8" id="grid">
+                    <li>
+                        <h1>Thông tin</h1>
+                        <h4>
+                            Đồ án Cá Nhân: Phan Thành Sử <br/>
+                            Mã số sinh viên: 1461585
+                        </h4>
+                    </li>
+                </ul>
+            </div>
+            <div class="tags">
+                <h5 class="spacing-bt">---- ---- ----</h5>
+                <ul class="grid effect-7" id="grid">
+                    <li><a href="#" class="btn">Đã thông báo "Bộ Công Thương"</a></li>
+                    <li><a href="#" class="btn">Thương hiệu việt nam</a></li>
+                    <li><a href="#" class="btn">Uy tín chất lượng </a></li>
+                    <li><a href="#" class="btn">Thông tin khác</a></li>
+                </ul>
+
+
+            </div>
+        </div>
+    <div class="container">
+        <div class="copy-rights">
+            Shop Shine & Shop Star<br>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="~/Public/js/jquery-1.9.1.js"></script>
+    <script src="~/Public/js/bootstrap.js"></script>
+    <script src="~/Public/js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <script src="~/Public/js/masonry.pkgd.min.js"></script>
+    <script src="~/Public/js/imagesloaded.js"></script>
+    <script src="~/Public/js/classie.js"></script>
+    <script src="~/Public/js/AnimOnScroll.js"></script>
+
+    <script>
+      new AnimOnScroll( document.getElementById( 'grid' ), {
+        minDuration : 0.4,
+        maxDuration : 0.7,
+        viewportFactor : 0.2
+      } );
+    </script>
+
+
+</body>
+</html>

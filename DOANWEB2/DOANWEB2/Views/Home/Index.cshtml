@@ -1,0 +1,38 @@
+﻿@model IEnumerable<ShopConnection.SanPham>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="content-wrap centering">
+    <div class="main-title spacing-bt">
+        <ul class="grid effect-8" id="grid">
+            <li>
+                <h1>New</h1>
+                <h4>Sản phẩm mới</h4>
+            </li>
+        </ul>
+    </div>
+    <div class="featured-items">
+        <ul class="grid effect-2" id="grid">
+           @foreach (var item in Model)
+            {
+            <li>
+                <div class="item">
+                    <h5>@Html.DisplayFor(s => item.GiaTien) đ</h5>
+                    <div class="grow">
+                        <img src="~/Public/images/@Html.DisplayFor(s => item.HinhAnh)" alt="" />
+                    </div>
+                    <p>@Html.DisplayFor(s => item.TenSanPham)</p>
+                    <p><a href="~/ListProduct/Details/@item.MaSanPham" class="more">Xem thêm <i class="fw-icon-chevron-right"></i></a></p>
+                </div>
+            </li>
+           }
+        </ul>
+    </div>
+</div>
+<div class="lines">
+    <div class="more-btn">
+        <a href="~/Home/product" class="btn">View More</a>
+    </div>
+</div>
+<div style="margin-top: 20px;" class="ruler"></div>

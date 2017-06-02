@@ -1,0 +1,50 @@
+﻿@model ShopConnection.SanPham
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/LayoutIndex.cshtml";
+}
+
+<div class="product">
+    <div class="col-md-6">
+        @Html.Partial("_PartialHinhSP", ShopBUS.BUS.ListImg(Model.MaSanPham))
+    </div>
+    <div class="col-md-6">
+        <div class="caption">
+            <div class="name"><h3>@Model.TenSanPham</h3></div>
+            <div class="info">
+                <ul>
+                    <li>Nhà sản xuất: @Model.NhaSanXuat</li>
+                    <li>Xuất xứ: @Model.XuatXu</li>
+                </ul>
+            </div>
+            <div class="price">&nbsp;Giá cũ:
+                <span> @(Model.GiaTien.Value + 20000) đ</span>
+                <br />&nbsp;Giá mới: @Model.GiaTien đ
+            </div>
+            <div class="rating"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star-empty"></span></div>
+            <div class="well">
+                @using (Html.BeginForm("Them", "GioHang", FormMethod.Post))
+                {
+                    <label>Số lượng: </label>
+                    <input type="hidden" value="@Model.MaSanPham.Trim()" name="MaSP" />
+                    <input name="soluong" style="width: 100px; margin-left:20px;" class="form-inline quantity" type="number" min="1" max="10" value="1">
+                    <input style="width: 100px; margin-left:50px;" type="submit" value="Đặt hàng" />
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12" style="clear:both;">
+        @Html.Raw(Model.MoTa)
+    </div>
+    <div class="col-md-12">
+        <h6>Bình luận:</h6><br/>
+        <div style="text-align:center;">
+            @using (Html.BeginForm("Create", "BinhLuan", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <textarea name="noidung" maxlength="2048" placeholder="Viết bình luận" style="width: 800px;"></textarea>
+                <input style="width:60px; height:35px; padding: 0;" type="submit" value="Gửi" />
+            }
+        </div>
+    </div>
+</div>

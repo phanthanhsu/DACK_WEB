@@ -1,0 +1,13 @@
+﻿@model IEnumerable<ShopConnection.LoaiSanPham>
+
+@{
+    Layout = null;
+}
+<select name="MaLoaiSanPham">
+    <option selected >-- Chọn Loại Sản Phẩm --</option>
+    @foreach (var item in Model)
+    {
+        <option value="@item.MaLoaiSP">@item.TenLoaiSanPham</option>
+    }
+</select>
+

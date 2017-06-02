@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ShopConnection.HinhAnh>
+@{
+    ViewBag.Title = "ImgOfSP";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminIndex.cshtml";
+}
+<style>
+    .hinhsanpham{
+        position: relative;
+        width: 100%;
+        height: 317px;
+        line-height: 317px;
+        border: 1px solid violet;
+        margin-top: 10px;
+    }
+
+    .hinhsanpham span {
+        position: absolute;
+        bottom: 0;
+        right: auto;
+        line-height: 0px;
+    }
+</style>
+<ul class="row">
+    @foreach (var item in Model)
+    {
+        <li style="text-align:center;" class="col-lg-3 col-sm-3 col-xs-4">
+            <div class="hinhsanpham">
+                <a href="">
+                    <img style="padding: 5px;" src="~/Public/images/@item.URL.Trim()" alt="" />
+                </a>
+                <span>
+                    <a href="~/Admin/SanPham/DelImg/@item.MaHinh"><img src="~/Public/img/remove2.png" style="width: 20px;" title="Xoá Ảnh Trên" /></a>
+                </span>
+            </div>
+        </li>
+    }
+    @foreach (var item in Model)
+    {
+        <li style="text-align:center;" class="col-lg-3 col-sm-3 col-xs-4">
+            @using (Html.BeginForm("ImgOfSP", "SanPham", FormMethod.Post, new { id = item.MaSanPham.Trim(), enctype = "multipart/form-data" }))
+            {
+            <input type="file" name="URL" style="margin: 15px 0px; height: 256px;" required/>
+            <input style="margin: -15px;" type="submit" value="Upload" />
+            }
+        </li>
+        break;
+    }
+</ul>
+

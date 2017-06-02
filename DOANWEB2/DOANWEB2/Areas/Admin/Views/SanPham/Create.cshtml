@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminIndex.cshtml";
+}
+<script type="text/javascript">
+
+    function PreviewImage() {
+        var oFReader = new FileReader();
+        oFReader.readAsDataURL(document.getElementById("uploadImage").files[0]);
+
+        oFReader.onload = function (oFREvent) {
+            document.getElementById("uploadPreview").src = oFREvent.target.result;
+        };
+    };
+
+</script>
+<div>
+    @using (Html.BeginForm("Create", "SanPham", FormMethod.Post, new { enctype =  "multipart/form-data" }))
+    {
+        <label>Mã Sản Phẩm:</label>
+        <input name="MaSanPham" type="text" placeholder="AB-XXX" required/>
+        <label>Tên Sản Phẩm:</label>
+        <input name="TenSanPham" type="text" placeholder="TÊN SẢN PHẨM" required/>
+        <label>Mô Tả:</label>
+        <textarea class="ckeditor" name="MoTa" style="width: 300px; height: 150px; max-width: 100px; max-height: 600px; " rows="4" cols="30"></textarea>
+        <label>Giá Tiền:</label>
+        <input name="GiaTien" type="number" min="1000" placeholder="vnđ" required/>
+        <label>Xuất Xứ:</label>
+        <input name="XuatXu" type="text" placeholder="Xuất Xứ" required/>
+        <label>Nhà Sản Xuất:</label>
+        <input name="NhaSanXuat" type="text" placeholder="Nhà Sản Xuất" required/>
+        <label>Loại Sản Phẩm:</label>
+        @Html.Partial("_LoaiSP", ShopBUS.BUS.ListMenu())
+        <label>Hình Mặc Định:</label>
+        <input name="HinhAnh" id="uploadImage" type="File" onchange="PreviewImage();" />
+        <img id="uploadPreview" style="width: 200px;" />
+        <input type="submit" value="Thêm Sản Phẩm" />
+    }
+</div>
