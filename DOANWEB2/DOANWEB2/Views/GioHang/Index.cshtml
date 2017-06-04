@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ShopConnection.GioHang>
+﻿@model IEnumerable<ShopConnection.v_GioHang>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/LayoutIndex.cshtml";
@@ -7,27 +7,29 @@
 <h1>Giỏ Hàng</h1>
 <table border="1">
     <tr>
-        <th>id</th>
-        <th>maTK</th>
-        <th>maSp</th>
-        <th>SL</th>
+        <th>ID</th>
+        <th>Tên Sản Phẩm</th>
+        <th>Số Lượng</th>
+        <th>Tổng Cộng</th>
+        <th>Tình Trạng</th>
     </tr>
     @foreach (var item in Model)
     {
         <tr>
             <td>@item.Id</td>
-            <td>@item.MaTK</td>
-            <td>@item.MaSp</td>
+            <td>@item.TenSanPham</td>
             <td>
                 @using (Html.BeginForm("CapNhatSL", "GioHang", FormMethod.Post))
                 {
                     <input type="hidden" value="@item.Id" name="Id" />
                     <input type="hidden" value="@item.MaTK" name="MaTK" />
                     <input type="hidden" value="@item.MaSp" name="MaSp" />
-                    <input name="SoLxxuong" style="width: 100px; margin-left:100px;" class="form-inline quantity" type="number" min="1" max="10" value="@item.SoLuong">
+                    <input name="SoLuong" style="width: 100px; margin-left:100px;" class="form-inline quantity" type="number" min="0" max="10" value="@item.SoLuong">
                     <input style="width: 100px; margin-left:20px;" type="submit" value="Cập Nhật" />
                 }
             </td>
+            <td>@item.TongCong</td>
+            <td>@item.TinhTrang</td>
         </tr>
     }
 </table>

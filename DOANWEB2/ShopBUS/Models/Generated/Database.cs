@@ -28,7 +28,7 @@
 //     Provider:               `System.Data.SqlClient`
 //     Connection String:      `Data Source=.;Initial Catalog=SSandSS;Integrated Security=True`
 //     Schema:                 ``
-//     Include Views:          `False`
+//     Include Views:          `True`
 
 
 
@@ -489,6 +489,18 @@ namespace ShopConnection
 
 
 
+
+
+		[Column] public int? TongCong { get; set; }
+
+
+
+
+
+		[Column] public int? TinhTrang { get; set; }
+
+
+
 	}
 
     
@@ -668,6 +680,62 @@ namespace ShopConnection
 
 
 		[Column] public byte[] definition { get; set; }
+
+
+
+	}
+
+    
+
+	[TableName("dbo.v_GioHang")]
+
+
+
+
+	[ExplicitColumns]
+
+    public partial class v_GioHang : ShopConnectionDB.Record<v_GioHang>  
+    {
+
+
+
+		[Column] public int Id { get; set; }
+
+
+
+
+
+		[Column] public string MaTK { get; set; }
+
+
+
+
+
+		[Column] public string MaSp { get; set; }
+
+
+
+
+
+		[Column] public int? SoLuong { get; set; }
+
+
+
+
+
+		[Column] public int? TongCong { get; set; }
+
+
+
+
+
+		[Column] public int? TinhTrang { get; set; }
+
+
+
+
+
+		[Column] public string TenSanPham { get; set; }
 
 
 

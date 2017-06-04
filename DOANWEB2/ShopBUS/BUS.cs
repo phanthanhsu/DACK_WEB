@@ -143,11 +143,18 @@ namespace ShopBUS
                 db.Update(gh);
             }
         }
-        public static IEnumerable<GioHang> ListGh(string idUser)
+        public static void XoaGioHang(GioHang gh)
         {
             using (var db = new ShopConnectionDB())
             {
-                return db.Query<GioHang>("Select * From GioHang Where MaTK = @0",idUser);
+                db.Delete(gh);
+            }
+        }
+        public static IEnumerable<v_GioHang> ListGh(string idUser)
+        {
+            using (var db = new ShopConnectionDB())
+            {
+                return db.Query<v_GioHang>("Select * From v_GioHang Where MaTK = @0",idUser);
             }
         }
     }

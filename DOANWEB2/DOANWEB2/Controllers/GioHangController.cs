@@ -28,9 +28,15 @@ namespace DOANWEB2.Controllers
         [HttpPost]
         public ActionResult CapNhatSL(GioHang gh)
         {
-
+            if (gh.SoLuong == 0) ShopBUS.BUS.XoaGioHang(gh);
             ShopBUS.BUS.CapNhatGioHang(gh);
             return RedirectToAction("index");
         }
+        [HttpPost]
+        public ActionResult Xoa(GioHang gh)
+        {
+            return RedirectToAction("index");
+        }
+
     }
 }
