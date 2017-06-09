@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using DOANWEB2.Models;
+using BotDetect.Web.Mvc;
 
 namespace DOANWEB2.Controllers
 {
@@ -137,6 +138,7 @@ namespace DOANWEB2.Controllers
         //
         // GET: /Account/Register
         [AllowAnonymous]
+        [CaptchaValidation("CaptchaCode", "registerCaptcha", "")]
         public ActionResult Register()
         {
             return View();
