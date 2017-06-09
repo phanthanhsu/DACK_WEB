@@ -212,6 +212,19 @@ namespace ShopConnection
 		[Column] public string MaSanPham { get; set; }
 	}
     
+	[TableName("dbo.HoaDon")]
+	[PrimaryKey("id")]
+	[ExplicitColumns]
+    public partial class HoaDon : ShopConnectionDB.Record<HoaDon>  
+    {
+		[Column] public int id { get; set; }
+		[Column] public string MaKH { get; set; }
+		[Column] public string MaSP { get; set; }
+		[Column] public int? SoLuong { get; set; }
+		[Column] public int? TongTien { get; set; }
+		[Column] public DateTime? NgayThanhToan { get; set; }
+	}
+    
 	[TableName("dbo.LoaiSanPham")]
 	[PrimaryKey("MaLoaiSP", AutoIncrement=false)]
 	[ExplicitColumns]

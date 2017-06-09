@@ -214,6 +214,7 @@
     <Compile Include="Controllers\ListProductController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\TimKiemController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -629,6 +630,30 @@
     <Content Include="Public\fonts\sourcesanspro-bold-webfont.svg" />
     <Content Include="Public\fonts\sourcesanspro-light-webfont.svg" />
     <Content Include="Public\fonts\sourcesanspro-regular-webfont.svg" />
+    <Content Include="Public\images\DH-CFR_001.jpg" />
+    <Content Include="Public\images\DH-CFR_001.png" />
+    <Content Include="Public\images\DH-CFR_002.jpg" />
+    <Content Include="Public\images\DH-CFR_003.jpg" />
+    <Content Include="Public\images\DH-DWv_001.png" />
+    <Content Include="Public\images\DH-DWv_002.png" />
+    <Content Include="Public\images\DH-DWv_003.png" />
+    <Content Include="Public\images\DH-DWv_004.png" />
+    <Content Include="Public\images\DH-DWv_005.png" />
+    <Content Include="Public\images\DH-GShock_001.jpg" />
+    <Content Include="Public\images\DH-GShock_002.png" />
+    <Content Include="Public\images\DH-GShock_003.png" />
+    <Content Include="Public\images\DH-TG_001.jpg" />
+    <Content Include="Public\images\DH-TG_002.jpg" />
+    <Content Include="Public\images\KTT-L141_001.png" />
+    <Content Include="Public\images\KTT-RBx_001.png" />
+    <Content Include="Public\images\MLT-MR011_001.jpg" />
+    <Content Include="Public\images\MLT-MR011_002.jpg" />
+    <Content Include="Public\images\MLT-SH8005_001.png" />
+    <Content Include="Public\images\MLT-SH8005_002.png" />
+    <Content Include="Public\images\NHNN-A50ml_001.png" />
+    <Content Include="Public\images\NHNN-Cnn_001.png" />
+    <Content Include="Public\images\TBP-BT_001.png" />
+    <Content Include="Public\images\TBP-KiD_001.png" />
     <Content Include="Public\img\Add2.png" />
     <Content Include="Public\img\Add_image.svg" />
     <Content Include="Public\img\banner-img.png" />
@@ -758,11 +783,12 @@
     <Content Include="Views\Menu\TypeProduct.cshtml" />
     <Content Include="Views\Shared\_PartialHinhSP.cshtml" />
     <Content Include="Views\GioHang\Index.cshtml" />
+    <Content Include="Views\TimKiem\KetQuaTimKiem.cshtml" />
+    <Content Include="Views\TimKiem\KetQuaTimKiemNangCao.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Public\images\" />
     <Folder Include="Views\BinhLuan\" />
   </ItemGroup>
   <ItemGroup>

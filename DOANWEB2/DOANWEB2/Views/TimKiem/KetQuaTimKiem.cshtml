@@ -1,0 +1,53 @@
+﻿
+@model PagedList.IPagedList<ShopConnection.SanPham>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Tìm kiếm sản phẩm";
+}
+
+<div class="content-wrap centering">
+    <div class="main-title spacing-bt">
+        <ul class="grid effect-8" id="grid">
+            <li>
+                <h1>Tìm kiếm</h1>
+                <h4>"@ViewBag.TuKhoa"</h4>
+            </li>
+        </ul>
+    </div>
+    <div class="main-title spacing-bt">
+        <ul class="grid effect-8" id="grid">
+            <li>
+                <h1>Tìm kiếm nâng cao</h1>
+                @using (Html.BeginForm("KetQuaTimKiemNangCao", "TimKiem"))
+                {
+                    @Html.TextBox("txtTimKiem", "", htmlAttributes: new { @placeholder = "Tên sản phẩm" })
+                    @Html.TextBox("txtXuatXu", "", htmlAttributes: new { @placeholder = "Xuất Xứ" })
+                    @Html.TextBox("txtNhaSanXuat", "", htmlAttributes: new { @placeholder = "Nhà sản xuất" })
+                    @Html.TextBox("txtLoaiSanPham", "", htmlAttributes: new { @placeholder = "Loại sản phẩm" })
+                    <input type="submit" value="Tìm kiếm"/>
+                }
+            </li>
+        </ul>
+    </div>
+    <div class="featured-items">
+        <ul class="grid effect-2" id="grid">
+            @foreach (var item in Model)
+            {
+                <li>
+                    <div class="item">
+                        <h5>@Html.DisplayFor(s => item.GiaTien) đ</h5>
+                        <div class="grow">
+                            <img src="~/Public/images/@Html.DisplayFor(s => item.HinhAnh)" alt="" />
+                        </div>
+                        <p>@Html.DisplayFor(s => item.TenSanPham)</p>
+                        <p><a href="~/ListProduct/Details/@item.MaSanPham" class="more">Xem thêm <i class="fw-icon-chevron-right"></i></a></p>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+    <ul class="pagination">
+        @Html.PagedListPager(Model, page => Url.Action("KetQuaTimKiem", new { page }))
+    </ul>
+</div>
+<div class="ruler"></div>

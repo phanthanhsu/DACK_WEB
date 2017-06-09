@@ -130,10 +130,12 @@
 
         <div style="margin-top: 20px;" class="ruler"></div>
         <div class="search">
-            <form>
-                <input type="text" id="tb_search" name="Key" placeholder="Tìm kiếm" />
+            @using (Html.BeginForm("KetQuaTimKiem","TimKiem"))
+            {
+                @Html.TextBox("txtTimKiem","",htmlAttributes: new { @id = "tb_search", @placeholder = "Tìm kiếm"})
+                @*<input type="text" id="tb_search" name="Key" placeholder="Tìm kiếm" />*@
                 <input type="submit" style="background: url(../../Public/img/button-search.png); padding: 0; margin: 0; border: none; width: 11.5%; float: right; height: 40px;" value="🔎" />
-            </form>
+            }
         </div>
         <div class="ruler"></div>
         <!--Content-->
