@@ -16,6 +16,13 @@ namespace ShopBUS
                 return db.Query<SanPham>("Select * From SanPham Where TinhTrang = 1");
             }
         }
+        public static IEnumerable<SanPham> ListSPLQ(string id)
+        {
+            using (var db = new ShopConnectionDB())
+            {
+                return db.Query<SanPham>("SELECT * FROM SanPham WHERE MaSanPham <> @0 AND MaLoaiSanPham =  (Select MaLoaiSanPham from SanPham where MaSanPham = @0)", id);
+            }
+        }
         public static IEnumerable<SanPham> ListSPAdmin()
         {
             using (var db = new ShopConnectionDB())

@@ -36,6 +36,27 @@
     <div class="col-md-12" style="clear:both;">
         @Html.Raw(Model.MoTa)
     </div>
+    <br />
+    <div class="col-md-12">
+        <h4 style="text-align:center">Các sản phẩm liên quan</h4>
+        <div class="featured-items" style="width:900px; height:400px;">
+            <ul class="grid effect-2" id="grid">
+                @foreach (var item in ViewBag.SanPhamLienQuan)
+                {
+                    <li style="position:center">
+                        <div class="item">
+                            <h5>@item.GiaTien đ</h5>
+                            <div class="grow">
+                                <img src="~/Public/images/@item.HinhAnh" alt="" />
+                            </div>
+                            <p>@item.TenSanPham)</p>
+                            <p><a href="~/ListProduct/Details/@item.MaSanPham" class="more">Xem thêm <i class="fw-icon-chevron-right"></i></a></p>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
     <div class="col-md-12">
         <h6>Bình luận:</h6><br/>
         <div style="text-align:center;">

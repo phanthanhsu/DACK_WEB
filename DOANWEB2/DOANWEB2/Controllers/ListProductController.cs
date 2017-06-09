@@ -27,6 +27,7 @@ namespace DOANWEB2.Controllers
         public ActionResult Details(string id)
         {
             var sp = ShopBUS.BUS.SanPham(id);
+            ViewBag.SanPhamLienQuan = ShopBUS.BUS.ListSPLQ(id);
             return View(sp);
         }
 
