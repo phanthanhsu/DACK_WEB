@@ -127,20 +127,36 @@ namespace ShopBUS
         {
             using (var db = new ShopConnectionDB())
             {
+                var date = DateTime.Now;
+                var gia = db.SingleOrDefault<int>("Select GiaTien From SanPham Where MaSanPham = @0", MaSP);
                 GioHang gh = new GioHang()
                 {
                     MaSp = MaSP,
                     MaTK = idUser,
-                    SoLuong = sl
+                    SoLuong = sl,
+                    TongCong = sl*gia,
+                    NgayDat = date,
+                    TinhTrang = 0
                 };
                 db.Insert(gh);
+            }
+        }
+        public static GioHang layGH(int id)
+        {
+            using (var db = new ShopConnectionDB())
+            {
+                return db.SingleOrDefault<GioHang>("Select * From GioHang Where Id = @0", id);
             }
         }
         public static void CapNhatGioHang(GioHang gh)
         {
             using (var db = new ShopConnectionDB())
             {
-                db.Update(gh);
+                var ght = layGH(gh.Id);
+                var gia = db.SingleOrDefault<int>("Select GiaTien From SanPham Where MaSanPham = @0", ght.MaSp);
+                ght.TongCong = gh.SoLuong * gia;
+                ght.SoLuong = gh.SoLuong;
+                db.Update(ght);
             }
         }
         public static void XoaGioHang(GioHang gh)
@@ -148,6 +164,14 @@ namespace ShopBUS
             using (var db = new ShopConnectionDB())
             {
                 db.Delete(gh);
+            }
+        }
+        public static void ThanhToanGioHang(GioHang gh)
+        {
+            using (var db = new ShopConnectionDB())
+            {
+
+                db.Update(gh);
             }
         }
         public static IEnumerable<v_GioHang> ListGh(string idUser)

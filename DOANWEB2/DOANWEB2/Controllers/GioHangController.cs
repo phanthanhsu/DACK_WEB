@@ -28,7 +28,11 @@ namespace DOANWEB2.Controllers
         [HttpPost]
         public ActionResult CapNhatSL(GioHang gh)
         {
-            if (gh.SoLuong == 0) ShopBUS.BUS.XoaGioHang(gh);
+            if (gh.SoLuong == 0)
+            {
+                ShopBUS.BUS.XoaGioHang(gh);
+                return RedirectToAction("index");
+            }
             ShopBUS.BUS.CapNhatGioHang(gh);
             return RedirectToAction("index");
         }
@@ -38,5 +42,12 @@ namespace DOANWEB2.Controllers
             return RedirectToAction("index");
         }
 
+        public ActionResult ThanhToan(int id)
+        {
+            var gh = ShopBUS.BUS.layGH(id);
+            gh.TinhTrang = 2;
+            ShopBUS.BUS.ThanhToanGioHang(gh);
+            return RedirectToAction("index");
+        }
     }
 }
