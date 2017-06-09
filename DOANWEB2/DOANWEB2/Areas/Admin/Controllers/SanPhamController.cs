@@ -13,7 +13,7 @@ namespace DOANWEB2.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var db = new ShopConnectionDB();
-            IEnumerable<SanPham> dsSP = db.Query<SanPham>("Select * From SanPham");
+            IEnumerable<SanPham> dsSP = ShopBUS.BUS.ListSPAdmin();
             return View(dsSP);
         }
 
@@ -134,6 +134,13 @@ namespace DOANWEB2.Areas.Admin.Controllers
         {
             var sp = ShopBUS.BUS.SanPham(id);
             ShopBUS.BUS.DeleteSP(sp);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult UnDelete(string id)
+        {
+            var sp = ShopBUS.BUS.SanPham(id);
+            ShopBUS.BUS.UnDeleteSP(sp);
             return RedirectToAction("Index");
         }
 

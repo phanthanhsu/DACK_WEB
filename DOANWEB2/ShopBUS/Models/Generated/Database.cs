@@ -235,6 +235,7 @@ namespace ShopConnection
 		[Column] public string NhaSanXuat { get; set; }
 		[Column] public string MaLoaiSanPham { get; set; }
 		[Column] public string HinhAnh { get; set; }
+		[Column] public int? TinhTrang { get; set; }
 	}
     
 	[TableName("dbo.v_GioHang")]

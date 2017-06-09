@@ -18,7 +18,14 @@
             <td style="text-align: center;">
                 <a href="~/Admin/LoaiSanPham/Edit/@item.MaLoaiSP.Trim()"><img src="~/Public/img/edit2.png" style="width: 20px;" title="Sửa" /></a>
                 &nbsp;
-                <a href="~/Admin/LoaiSanPham/Delete/@item.MaLoaiSP.Trim()"><img src="~/Public/img/remove2.png" style="width: 20px;" title="Xoá" /></a>
+                @if (item.TinhTrang == 1)
+                {
+                    <a href="~/Admin/LoaiSanPham/Delete/@item.MaLoaiSP.Trim()"><img src="~/Public/img/un_lock.png" style="width: 20px;" title="Khoá Sản Phẩm" /></a>
+                }
+                else
+                {
+                    <a href="~/Admin/LoaiSanPham/UnDelete/@item.MaLoaiSP.Trim()"><img src="~/Public/img/lock.png" style="width: 20px;" title="Mở Khoá Sản Phẩm" /></a>
+                }
             </td>
         </tr>
     }

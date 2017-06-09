@@ -26,11 +26,18 @@
             <td>@item.NhaSanXuat</td>
             <td style="text-align: center;" >@item.MaLoaiSanPham</td>
             <td style="text-align: center;" >
-                <a href="~/Admin/SanPham/Edit/@item.MaSanPham"><img src="~/Public/img/edit2.png" style="width: 20px;" title="Sửa" /></a>
+                <a href="~/Admin/SanPham/Edit/@item.MaSanPham"><img src="~/Public/img/edit2.png" style="width: 20px;" title="Sửa Sản Phẩm" /></a>
                 &nbsp;
-                <a href="~/Admin/SanPham/Delete/@item.MaSanPham"><img src="~/Public/img/remove2.png" style="width: 20px;" title="Xoá" /></a>
+                @if (item.TinhTrang == 1)
+                {
+                    <a href="~/Admin/SanPham/Delete/@item.MaSanPham"><img src="~/Public/img/un_lock.png" style="width: 20px;" title="Khoá Sản Phẩm" /></a>
+                }
+                else
+                {
+                    <a href="~/Admin/SanPham/UnDelete/@item.MaSanPham"><img src="~/Public/img/lock.png" style="width: 20px;" title="Mở Khoá Sản Phẩm" /></a>
+                }
                 &nbsp;
-                <a href="~/Admin/SanPham/ImgOfSP/@item.MaSanPham"><img src="~/Public/img/Add_image.svg" style="width: 20px;" title="Thêm Ảnh" /></a>
+                <a href="~/Admin/SanPham/ImgOfSP/@item.MaSanPham"><img src="~/Public/img/Add_image.svg" style="width: 20px;" title="Thêm Ảnh Cho Sản Phẩm" /></a>
             </td>
         </tr>
     }

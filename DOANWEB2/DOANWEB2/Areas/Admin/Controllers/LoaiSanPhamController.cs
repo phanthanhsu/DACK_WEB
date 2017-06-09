@@ -12,7 +12,7 @@ namespace DOANWEB2.Areas.Admin.Controllers
         // GET: Admin/LoaiSanPham
         public ActionResult Index()
         {
-            var dsLoaiSP = ShopBUS.BUS.ListMenu();
+            var dsLoaiSP = ShopBUS.BUS.ListMenuAdmin();
             return View(dsLoaiSP);
         }
 
@@ -75,6 +75,13 @@ namespace DOANWEB2.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: Admin/LoaiSanPham/Delete/5
+        public ActionResult UnDelete(string id)
+        {
+            var lSP = ShopBUS.BUS.LSp(id);
+            ShopBUS.BUS.UnDeleteLoaiSP(lSP);
+            return RedirectToAction("Index");
+        }
         // POST: Admin/LoaiSanPham/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)

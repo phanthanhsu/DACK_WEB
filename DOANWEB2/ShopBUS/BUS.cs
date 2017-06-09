@@ -13,6 +13,13 @@ namespace ShopBUS
         {
             using (var db = new ShopConnectionDB())
             {
+                return db.Query<SanPham>("Select * From SanPham Where TinhTrang = 1");
+            }
+        }
+        public static IEnumerable<SanPham> ListSPAdmin()
+        {
+            using (var db = new ShopConnectionDB())
+            {
                 return db.Query<SanPham>("Select * From SanPham");
             }
         }
@@ -20,7 +27,7 @@ namespace ShopBUS
         {
             using (var db = new ShopConnectionDB())
             {
-                return db.Query<SanPham>("Select * From SanPham Where MaLoaiSanPham = @0", id);
+                return db.Query<SanPham>("Select * From SanPham Where TinhTrang = 1 And MaLoaiSanPham = @0", id);
             }
         } 
         public static SanPham SanPham(string id)
@@ -37,6 +44,13 @@ namespace ShopBUS
                 return db.Query<LoaiSanPham>("Select * From LoaiSanPham Where TinhTrang = 1");
             }
         }
+        public static IEnumerable<LoaiSanPham> ListMenuAdmin()
+        {
+            using (var db = new ShopConnectionDB())
+            {
+                return db.Query<LoaiSanPham>("Select * From LoaiSanPham");
+            }
+        }
         public static IEnumerable<HinhAnh> ListImg(string maSP)
         {
             using (var db = new ShopConnectionDB())
@@ -48,6 +62,7 @@ namespace ShopBUS
         {
             using (var db = new ShopConnectionDB())
             {
+                ab.TinhTrang = 1;
                 db.Insert(ab);
             }
         }
@@ -90,7 +105,16 @@ namespace ShopBUS
         {
             using (var db = new ShopConnectionDB())
             {
-                db.Delete(sp);
+                sp.TinhTrang = 0;
+                db.Update(sp);
+            }
+        }
+        public static void UnDeleteSP(SanPham sp)
+        {
+            using (var db = new ShopConnectionDB())
+            {
+                sp.TinhTrang = 1;
+                db.Update(sp);
             }
         }
         public static void ThemLoaiSP(LoaiSanPham ab)
@@ -104,6 +128,14 @@ namespace ShopBUS
         public static void DeleteLoaiSP(LoaiSanPham lsp)
         {
             lsp.TinhTrang = 0;
+            using (var db = new ShopConnectionDB())
+            {
+                db.Update(lsp);
+            }
+        }
+        public static void UnDeleteLoaiSP(LoaiSanPham lsp)
+        {
+            lsp.TinhTrang = 1;
             using (var db = new ShopConnectionDB())
             {
                 db.Update(lsp);
