@@ -251,5 +251,12 @@ namespace ShopBUS
                 return db.Query<v_GioHang>("Select * From v_GioHang Where MaTK = @0",idUser);
             }
         }
+        public static UserInfo layThongTin(string id)
+        {
+            using (var db = new ShopConnectionDB())
+            {
+                return db.SingleOrDefault<UserInfo>("Select * From UserInfo Where IdUser = @0", id);
+            }
+        }
     }
 }

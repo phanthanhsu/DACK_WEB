@@ -222,6 +222,7 @@
     <Compile Include="Controllers\ListProductController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\ThongTinController.cs" />
     <Compile Include="Controllers\TimKiemController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -793,6 +794,7 @@
     <Content Include="Views\GioHang\Index.cshtml" />
     <Content Include="Views\TimKiem\KetQuaTimKiem.cshtml" />
     <Content Include="Views\TimKiem\KetQuaTimKiemNangCao.cshtml" />
+    <Content Include="Views\ThongTin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

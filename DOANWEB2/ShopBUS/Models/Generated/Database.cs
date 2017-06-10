@@ -251,6 +251,29 @@ namespace ShopConnection
 		[Column] public int? TinhTrang { get; set; }
 	}
     
+	[TableName("dbo.sysdiagrams")]
+	[PrimaryKey("diagram_id")]
+	[ExplicitColumns]
+    public partial class sysdiagram : ShopConnectionDB.Record<sysdiagram>  
+    {
+		[Column] public string name { get; set; }
+		[Column] public int principal_id { get; set; }
+		[Column] public int diagram_id { get; set; }
+		[Column] public int? version { get; set; }
+		[Column] public byte[] definition { get; set; }
+	}
+    
+	[TableName("dbo.UserInfo")]
+	[PrimaryKey("IdUser", AutoIncrement=false)]
+	[ExplicitColumns]
+    public partial class UserInfo : ShopConnectionDB.Record<UserInfo>  
+    {
+		[Column] public string IdUser { get; set; }
+		[Column] public string Ten { get; set; }
+		[Column] public string DienThoai { get; set; }
+		[Column] public string DiaChi { get; set; }
+	}
+    
 	[TableName("dbo.v_GioHang")]
 	[ExplicitColumns]
     public partial class v_GioHang : ShopConnectionDB.Record<v_GioHang>  
