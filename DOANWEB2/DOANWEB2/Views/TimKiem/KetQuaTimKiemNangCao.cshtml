@@ -23,7 +23,12 @@
                     @Html.TextBox("txtTimKiem", "", htmlAttributes: new { @placeholder = "Tên sản phẩm" })
                     @Html.TextBox("txtXuatXu", "", htmlAttributes: new { @placeholder = "Xuất Xứ" })
                     @Html.TextBox("txtNhaSanXuat", "", htmlAttributes: new { @placeholder = "Nhà sản xuất" })
-                    @Html.TextBox("txtLoaiSanPham", "", htmlAttributes: new { @placeholder = "Loại sản phẩm" })
+                    <select name="txtLoaiSanPham">
+                        @foreach (var i in ViewBag.dsLSP)
+                        {
+                            <option value="@i.MaLoaiSP">@i.TenLoaiSanPham</option>
+                        }
+                    </select>
                     <input type="submit" value="Tìm kiếm" />
                 }
             </li>

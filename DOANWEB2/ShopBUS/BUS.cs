@@ -16,6 +16,13 @@ namespace ShopBUS
                 return db.Query<SanPham>("Select * From SanPham Where TinhTrang = 1");
             }
         }
+        public static IEnumerable<LoaiSanPham> ListLSP()
+        {
+            using (var db = new ShopConnectionDB())
+            {
+                return db.Query<LoaiSanPham>("Select * From LoaiSanPham Where TinhTrang = 1");
+            }
+        }
         public static IEnumerable<SanPham> ListSPLQ(string id)
         {
             using (var db = new ShopConnectionDB())
@@ -46,25 +53,14 @@ namespace ShopBUS
                 return db.Query<SanPham>("Select * From SanPham Where TenSanPham LIKE @0",TuKhoa);
             }
         }
-        public static IEnumerable<SanPham> ListSPNangCao(string TuKhoa, string XuatXu, string NhaSanXuat, string LoaiSanPham)
+        public static IEnumerable<SanPham> ListSPNangCao(string TuKhoa, string XuatXu, string NhaSanXuat, string MaLoaiSanPham)
         {
             using (var db = new ShopConnectionDB())
             {
                 TuKhoa = "%" + TuKhoa + "%";
                 XuatXu = "%" + XuatXu + "%";
                 NhaSanXuat = "%" + NhaSanXuat + "%";
-                String MaLoai;
-                if (LoaiSanPham != "")
-                {
-                    LoaiSanPham = "%" + LoaiSanPham + "%";
-                    MaLoai = db.First<LoaiSanPham>("SELECT MaLoaiSP FROM LoaiSanPham WHERE TenLoaiSanPham LIKE  @0", LoaiSanPham).ToString();
-                    MaLoai = "%" + MaLoai + "%";
-                }
-                else
-                {
-                    MaLoai = "%%";
-                }
-                return db.Query<SanPham>("Select * From SanPham Where TenSanPham LIKE @0 AND XuatXu LIKE @1 AND NhaSanXuat LIKE @2 AND MaLoaiSanPham LIKE @3", TuKhoa, XuatXu, NhaSanXuat, MaLoai);
+                return db.Query<SanPham>("Select * From SanPham Where TenSanPham LIKE @0 AND XuatXu LIKE @1 AND NhaSanXuat LIKE @2 AND MaLoaiSanPham = @3", TuKhoa, XuatXu, NhaSanXuat, MaLoaiSanPham);
             }
         }
 
