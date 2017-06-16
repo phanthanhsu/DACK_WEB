@@ -71,6 +71,13 @@ namespace ShopBUS
                 return db.SingleOrDefault<SanPham>("Select * From SanPham Where MaSanPham = @0", id);
             }
         }
+        public static String TenSanPham(string id)
+        {
+            using (var db = new ShopConnectionDB())
+            {
+                return db.SingleOrDefault<String>("Select TenSanPham From SanPham Where MaSanPham = @0", id);
+            }
+        }
         public static IEnumerable<LoaiSanPham> ListMenu()
         {
             using (var db = new ShopConnectionDB())
@@ -252,6 +259,21 @@ namespace ShopBUS
             using (var db = new ShopConnectionDB())
             {
                 return db.SingleOrDefault<UserInfo>("Select * From UserInfo Where IdUser = @0", id);
+            }
+        }
+        public static IEnumerable<HoaDon> GetTop10byLSP(string LSP)
+        {
+            using (var db = new ShopConnectionDB())
+            {
+                return db.Query<HoaDon>("select top 10 MaSP,Sum(SoLuong) from HoaDon where MaSP in (select MaSanPham from SanPham sp where sp.MaLoaiSanPham = @0) Group by MaSP",LSP);
+            }
+        }
+
+        public static IEnumerable<SanPham> GetTop10()
+        {
+            using (var db = new ShopConnectionDB())
+            {
+                return db.Query<SanPham>("Select * from SanPham where MaSanPham in (select top 10 MaSP from HoaDon  Group by MaSP ORDER BY SUM(SoLuong) DESC)");
             }
         }
     }
