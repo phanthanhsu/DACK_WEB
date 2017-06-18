@@ -243,7 +243,6 @@ namespace ShopBUS
         {
             using (var db = new ShopConnectionDB())
             {
-
                 db.Update(gh);
             }
         }
@@ -274,6 +273,20 @@ namespace ShopBUS
             using (var db = new ShopConnectionDB())
             {
                 return db.Query<SanPham>("Select * from SanPham where MaSanPham in (select top 10 MaSP from HoaDon  Group by MaSP ORDER BY SUM(SoLuong) DESC)");
+            }
+        }
+        public static void ThemBinhLuan(BinhLuan cmt)
+        {
+            using (var db = new ShopConnectionDB())
+            {
+                db.Insert(cmt);
+            }
+        }
+        public static IEnumerable<BinhLuan> Lay10Cmt(string idsp)
+        {
+            using (var db = new ShopConnectionDB())
+            {
+                return db.Query<BinhLuan>("select top 10 * from BinhLuan where idSP = @0", idsp);
             }
         }
     }

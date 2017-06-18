@@ -1,4 +1,5 @@
-﻿using ShopConnection;
+﻿using Microsoft.AspNet.Identity;
+using ShopConnection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,8 +36,10 @@ namespace DOANWEB2.Controllers
             try
             {
                 // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                cmt.idaccount = User.Identity.GetUserId();
+                cmt.tinhtrang = 1;
+                ShopBUS.BUS.ThemBinhLuan(cmt);
+                return RedirectToAction("Details", "ListProduct", new { id = cmt.idSP.Trim() });
             }
             catch
             {

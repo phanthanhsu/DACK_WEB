@@ -28,6 +28,7 @@ namespace DOANWEB2.Controllers
         {
             var sp = ShopBUS.BUS.SanPham(id);
             ViewBag.SanPhamLienQuan = ShopBUS.BUS.ListSPLQ(id);
+            ViewBag.DSBinhLuan = ShopBUS.BUS.Lay10Cmt(id);
             return View(sp);
         }
 

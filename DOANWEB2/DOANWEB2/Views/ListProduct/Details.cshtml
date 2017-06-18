@@ -60,13 +60,22 @@
     <div class="col-md-12">
         <h6>Bình luận:</h6><br/>
         @*<div class="fb-comments" data-href="http://localhost:60222/ListProduct/Details/KTT-RBx" data-width="5" data-numposts="5"></div>*@
-        <div style="text-align:center;">
+        <div class="well" style="padding:0px 10px 20px 30px;">
             @using (Html.BeginForm("Create", "BinhLuan", FormMethod.Post))
             {
-                @Html.AntiForgeryToken()
-                <textarea name="noidung" maxlength="2048" placeholder="Viết bình luận" style="width: 800px;"></textarea>
-                <input style="width:60px; height:35px; padding: 0;" type="submit" value="Gửi" />
+                <input type="hidden" name="ngay" value="@DateTime.Now"><br>
+                <input type="hidden" name="idSP" value="@Model.MaSanPham"><br>
+                <span>Nội dung: </span><br><textarea name="noidung" required="" maxlength="2048" placeholder="Viết bình luận" style="width: 90%; height: 80px; resize: none;"></textarea>
+                <input style="width:60px; height:35px; padding: 0; margin-right:20px; float: right;" type="submit" value="Gửi">
             }
+            <div>
+            @foreach (var item in ViewBag.DSBinhLuan)
+            {
+                <br/>
+                <strong style="color: #365899;">@item.idaccount · </strong> @item.noidung<br>
+                <span style="color: #90949c;">@item.ngay</span>
+            }
+            </div>
         </div>
     </div>
 </div>
