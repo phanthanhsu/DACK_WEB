@@ -31,6 +31,7 @@ namespace DOANWEB2.Controllers
             string MaLoaiSanPham = f["txtLoaiSanPham"].ToString();
             var dsSP = ShopBUS.BUS.ListSPNangCao(TuKhoa, XuatXu, NhaSanXuat, MaLoaiSanPham).ToPagedList(page, pagesize);
             ViewBag.TuKhoa = "Kết quả tìm kiếm nâng cao";
+            ViewBag.dsLSP = ShopBUS.BUS.ListLSP();
             return View(dsSP);
         }
 

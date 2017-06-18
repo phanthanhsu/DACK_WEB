@@ -1,4 +1,4 @@
-﻿using ShopConnection;
+﻿    using ShopConnection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -260,11 +260,11 @@ namespace ShopBUS
                 return db.SingleOrDefault<UserInfo>("Select * From UserInfo Where IdUser = @0", id);
             }
         }
-        public static IEnumerable<HoaDon> GetTop10byLSP(string LSP)
+        public static IEnumerable<SanPham> GetTop10byLSP(string LSP)
         {
             using (var db = new ShopConnectionDB())
             {
-                return db.Query<HoaDon>("select top 10 MaSP,Sum(SoLuong) from HoaDon where MaSP in (select MaSanPham from SanPham sp where sp.MaLoaiSanPham = @0) Group by MaSP",LSP);
+                return db.Query<SanPham>("Select TOP 10 * from SanPham where MaLoaiSanPham = @0 and MaSanPham in (select top 10 MaSP from HoaDon Group by MaSP ORDER BY SUM(SoLuong) DESC)", LSP);
             }
         }
 
@@ -272,7 +272,7 @@ namespace ShopBUS
         {
             using (var db = new ShopConnectionDB())
             {
-                return db.Query<SanPham>("Select * from SanPham where MaSanPham in (select top 10 MaSP from HoaDon  Group by MaSP ORDER BY SUM(SoLuong) DESC)");
+                return db.Query<SanPham>("Select * from SanPham where MaSanPham in (select top 10 MaSP from HoaDon Group by MaSP ORDER BY SUM(SoLuong) DESC)");
             }
         }
         public static void ThemBinhLuan(BinhLuan cmt)
