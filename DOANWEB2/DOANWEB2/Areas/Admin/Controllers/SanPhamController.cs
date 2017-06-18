@@ -7,28 +7,29 @@ using System.Web.Mvc;
 
 namespace DOANWEB2.Areas.Admin.Controllers
 {
+    [Authorize(Roles ="admin")]
     public class SanPhamController : Controller
     {
         // GET: Admin/SanPham
         public ActionResult Index()
         {
             var db = new ShopConnectionDB();
-            IEnumerable<SanPham> dsSP = ShopBUS.BUS.ListSPAdmin();
+            IEnumerable<SanPham> dsSP = ShopBUS.AdminBUS.ListSPAdmin();
             return View(dsSP);
         }
 
         // GET: Admin/SanPham/DelImg/5
         public ActionResult DelImg(int id)
         {
-            var sp = ShopBUS.BUS.Hinh(id);
-            ShopBUS.BUS.XoaAnh(sp);
+            var sp = ShopBUS.AdminBUS.Hinh(id);
+            ShopBUS.AdminBUS.XoaAnh(sp);
             return RedirectToAction("ImgOfSP", new { id = sp.MaSanPham.Trim() });
         }
 
         // GET: Admin/SanPham/ImgOfSP/5
         public ActionResult ImgOfSP(string id)
         {
-            var DSImg = ShopBUS.BUS.ListImg(id);
+            var DSImg = ShopBUS.AdminBUS.ListImg(id);
             return View(DSImg);
         }
 
@@ -42,13 +43,13 @@ namespace DOANWEB2.Areas.Admin.Controllers
                 var hpf = HttpContext.Request.Files[0];
                 if (hpf.ContentLength > 0)
                 {
-                    int sl = ShopBUS.BUS.DemAnh(id) + 1;
+                    int sl = ShopBUS.AdminBUS.DemAnh(id) + 1;
                     string name = id + "_00" + sl + ".png";
                     string fullName = "~/Public/images/" + name;
                     hpf.SaveAs(Server.MapPath(fullName));
                     ha.URL = name;
                     ha.MaSanPham = id;
-                    ShopBUS.BUS.ThemAnh(ha);
+                    ShopBUS.AdminBUS.ThemAnh(ha);
                 }
                 return RedirectToAction("ImgOfSP", new { id });
             }
@@ -83,8 +84,8 @@ namespace DOANWEB2.Areas.Admin.Controllers
                 ha.URL = sp.HinhAnh;
                 ha.MaSanPham = sp.MaSanPham;
                 // TODO: Add insert logic here
-                ShopBUS.BUS.ThemSP(sp);
-                ShopBUS.BUS.ThemAnh(ha);
+                ShopBUS.AdminBUS.ThemSP(sp);
+                ShopBUS.AdminBUS.ThemAnh(ha);
                 return RedirectToAction("Index");
             }
             catch
@@ -96,8 +97,8 @@ namespace DOANWEB2.Areas.Admin.Controllers
         // GET: Admin/SanPham/Edit/5
         public ActionResult Edit(string id)
         {
-            var sp = ShopBUS.BUS.SanPham(id);
-            ViewBag.MaLoaiSanPham = new SelectList(ShopBUS.BUS.ListMenu(), "MaLoaiSP", "TenLoaiSanPham",sp.MaLoaiSanPham);
+            var sp = ShopBUS.AdminBUS.SanPham(id);
+            ViewBag.MaLoaiSanPham = new SelectList(ShopBUS.AdminBUS.ListMenuAdmin(), "MaLoaiSP", "TenLoaiSanPham",sp.MaLoaiSanPham);
             return View(sp);
         }
 
@@ -107,7 +108,7 @@ namespace DOANWEB2.Areas.Admin.Controllers
         [ValidateInput(false)]
         public ActionResult Edit(string id, SanPham sp)
         {
-            var spTam = ShopBUS.BUS.SanPham(id);
+            var spTam = ShopBUS.AdminBUS.SanPham(id);
             sp = spTam;
             try
             {
@@ -120,7 +121,7 @@ namespace DOANWEB2.Areas.Admin.Controllers
                     sp.HinhAnh = name;
                 }
                 // TODO: Add update logic here
-                ShopBUS.BUS.EditSP(id, sp);
+                ShopBUS.AdminBUS.EditSP(id, sp);
                 return RedirectToAction("Index");
             }
             catch
@@ -132,15 +133,15 @@ namespace DOANWEB2.Areas.Admin.Controllers
         // GET: Admin/SanPham/Delete/5
         public ActionResult Delete(string id)
         {
-            var sp = ShopBUS.BUS.SanPham(id);
-            ShopBUS.BUS.DeleteSP(sp);
+            var sp = ShopBUS.AdminBUS.SanPham(id);
+            ShopBUS.AdminBUS.DeleteSP(sp);
             return RedirectToAction("Index");
         }
 
         public ActionResult UnDelete(string id)
         {
-            var sp = ShopBUS.BUS.SanPham(id);
-            ShopBUS.BUS.UnDeleteSP(sp);
+            var sp = ShopBUS.AdminBUS.SanPham(id);
+            ShopBUS.AdminBUS.UnDeleteSP(sp);
             return RedirectToAction("Index");
         }
 

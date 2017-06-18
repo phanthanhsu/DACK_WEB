@@ -7,12 +7,13 @@ using System.Web.Mvc;
 
 namespace DOANWEB2.Areas.Admin.Controllers
 {
+    [Authorize(Roles ="admin")]
     public class LoaiSanPhamController : Controller
     {
         // GET: Admin/LoaiSanPham
         public ActionResult Index()
         {
-            var dsLoaiSP = ShopBUS.BUS.ListMenuAdmin();
+            var dsLoaiSP = ShopBUS.AdminBUS.ListMenuAdmin();
             return View(dsLoaiSP);
         }
 
@@ -35,7 +36,7 @@ namespace DOANWEB2.Areas.Admin.Controllers
             try
             {
                 // TODO: Add insert logic here
-                ShopBUS.BUS.ThemLoaiSP(lSp);
+                ShopBUS.AdminBUS.ThemLoaiSP(lSp);
                 return RedirectToAction("Index");
             }
             catch
@@ -47,7 +48,7 @@ namespace DOANWEB2.Areas.Admin.Controllers
         // GET: Admin/LoaiSanPham/Edit/5
         public ActionResult Edit(string id)
         {
-            var lSP = ShopBUS.BUS.LSp(id);
+            var lSP = ShopBUS.AdminBUS.LSp(id);
             return View(lSP);
         }
 
@@ -58,7 +59,7 @@ namespace DOANWEB2.Areas.Admin.Controllers
             try
             {
                 // TODO: Add update logic here
-                ShopBUS.BUS.EditLoaiSP(id ,lSp);
+                ShopBUS.AdminBUS.EditLoaiSP(id ,lSp);
                 return RedirectToAction("Index");
             }
             catch
@@ -70,16 +71,16 @@ namespace DOANWEB2.Areas.Admin.Controllers
         // GET: Admin/LoaiSanPham/Delete/5
         public ActionResult Delete(string id)
         {
-            var lSP = ShopBUS.BUS.LSp(id);
-            ShopBUS.BUS.DeleteLoaiSP(lSP);
+            var lSP = ShopBUS.AdminBUS.LSp(id);
+            ShopBUS.AdminBUS.DeleteLoaiSP(lSP);
             return RedirectToAction("Index");
         }
 
         // GET: Admin/LoaiSanPham/Delete/5
         public ActionResult UnDelete(string id)
         {
-            var lSP = ShopBUS.BUS.LSp(id);
-            ShopBUS.BUS.UnDeleteLoaiSP(lSP);
+            var lSP = ShopBUS.AdminBUS.LSp(id);
+            ShopBUS.AdminBUS.UnDeleteLoaiSP(lSP);
             return RedirectToAction("Index");
         }
         // POST: Admin/LoaiSanPham/Delete/5

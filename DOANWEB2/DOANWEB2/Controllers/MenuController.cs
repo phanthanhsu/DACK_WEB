@@ -11,7 +11,7 @@ namespace DOANWEB2.Controllers
         // GET: Menu
         public ActionResult TypeProduct()
         {
-            return View(ShopBUS.BUS.ListMenu());
+            return View(ShopBUS.BUS.ListLSP());
         }
     }
 }

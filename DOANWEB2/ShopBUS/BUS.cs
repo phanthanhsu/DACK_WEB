@@ -1,4 +1,4 @@
-﻿    using ShopConnection;
+﻿using ShopConnection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,18 +9,26 @@ namespace ShopBUS
 {
     public class BUS
     {
+        //San pham
+        public static String TenSanPham(string id)
+        {
+            using (var db = new ShopConnectionDB())
+            {
+                return db.SingleOrDefault<String>("Select TenSanPham From SanPham Where MaSanPham = @0", id);
+            }
+        }
+        public static SanPham SanPham(string id)
+        {
+            using (var db = new ShopConnectionDB())
+            {
+                return db.SingleOrDefault<SanPham>("Select * From SanPham Where MaSanPham = @0", id);
+            }
+        }
         public static IEnumerable<SanPham> ListSP()
         {
             using (var db = new ShopConnectionDB())
             {
                 return db.Query<SanPham>("Select * From SanPham Where TinhTrang = 1");
-            }
-        }
-        public static IEnumerable<LoaiSanPham> ListLSP()
-        {
-            using (var db = new ShopConnectionDB())
-            {
-                return db.Query<LoaiSanPham>("Select * From LoaiSanPham Where TinhTrang = 1");
             }
         }
         public static IEnumerable<SanPham> ListSPLQ(string id)
@@ -30,13 +38,6 @@ namespace ShopBUS
                 return db.Query<SanPham>("SELECT * FROM SanPham WHERE MaSanPham <> @0 AND MaLoaiSanPham =  (Select MaLoaiSanPham from SanPham where MaSanPham = @0)", id);
             }
         }
-        public static IEnumerable<SanPham> ListSPAdmin()
-        {
-            using (var db = new ShopConnectionDB())
-            {
-                return db.Query<SanPham>("Select * From SanPham");
-            }
-        }
         public static IEnumerable<SanPham> ListSPOfType(string id)
         {
             using (var db = new ShopConnectionDB())
@@ -44,7 +45,6 @@ namespace ShopBUS
                 return db.Query<SanPham>("Select * From SanPham Where TinhTrang = 1 And MaLoaiSanPham = @0", id);
             }
         }
-
         public static IEnumerable<SanPham> ListSPOfName(string TuKhoa)
         {
             using (var db = new ShopConnectionDB())
@@ -64,47 +64,28 @@ namespace ShopBUS
             }
         }
 
-        public static SanPham SanPham(string id)
+        //Loai san pham
+        public static LoaiSanPham LSp(string id)
         {
             using (var db = new ShopConnectionDB())
             {
-                return db.SingleOrDefault<SanPham>("Select * From SanPham Where MaSanPham = @0", id);
+                return db.SingleOrDefault<LoaiSanPham>("Select * From LoaiSanPham Where MaLoaiSP = @0", id);
             }
         }
-        public static String TenSanPham(string id)
-        {
-            using (var db = new ShopConnectionDB())
-            {
-                return db.SingleOrDefault<String>("Select TenSanPham From SanPham Where MaSanPham = @0", id);
-            }
-        }
-        public static IEnumerable<LoaiSanPham> ListMenu()
+        public static IEnumerable<LoaiSanPham> ListLSP()
         {
             using (var db = new ShopConnectionDB())
             {
                 return db.Query<LoaiSanPham>("Select * From LoaiSanPham Where TinhTrang = 1");
             }
         }
-        public static IEnumerable<LoaiSanPham> ListMenuAdmin()
+
+        //Hinh anh
+        public static int DemAnh(string id)
         {
             using (var db = new ShopConnectionDB())
             {
-                return db.Query<LoaiSanPham>("Select * From LoaiSanPham");
-            }
-        }
-        public static IEnumerable<HinhAnh> ListImg(string maSP)
-        {
-            using (var db = new ShopConnectionDB())
-            {
-                return db.Query<HinhAnh>("Select * From HinhAnh Where MaSanPham = @0", maSP);
-            }
-        }
-        public static void ThemSP(SanPham ab)
-        {
-            using (var db = new ShopConnectionDB())
-            {
-                ab.TinhTrang = 1;
-                db.Insert(ab);
+                return db.ExecuteScalar<int>("select count(*) from HinhAnh Where MaSanPham = @0", id);
             }
         }
         public static HinhAnh Hinh(int id)
@@ -114,86 +95,20 @@ namespace ShopBUS
                 return db.SingleOrDefault<HinhAnh>("Select * From HinhAnh Where MaHinh = @0", id);
             }
         }
-        public static void ThemAnh(HinhAnh ab)
+        public static IEnumerable<HinhAnh> ListImg(string maSP)
         {
             using (var db = new ShopConnectionDB())
             {
-                db.Insert(ab);
+                return db.Query<HinhAnh>("Select * From HinhAnh Where MaSanPham = @0", maSP);
             }
         }
-        public static void XoaAnh(HinhAnh ab)
+
+        //Gio hang
+        public static GioHang layGH(int id)
         {
             using (var db = new ShopConnectionDB())
             {
-                db.Delete(ab);
-            }
-        }
-        public static int DemAnh(string id)
-        {
-            using (var db = new ShopConnectionDB())
-            {
-                return db.ExecuteScalar<int>("select count(*) from HinhAnh Where MaSanPham = @0", id);
-            }
-        }
-        public static void EditSP(string id, SanPham ab)
-        {
-            using (var db = new ShopConnectionDB())
-            {
-                db.Update(ab,id);
-            }
-        }
-        public static void DeleteSP(SanPham sp)
-        {
-            using (var db = new ShopConnectionDB())
-            {
-                sp.TinhTrang = 0;
-                db.Update(sp);
-            }
-        }
-        public static void UnDeleteSP(SanPham sp)
-        {
-            using (var db = new ShopConnectionDB())
-            {
-                sp.TinhTrang = 1;
-                db.Update(sp);
-            }
-        }
-        public static void ThemLoaiSP(LoaiSanPham ab)
-        {
-            ab.TinhTrang = 1;
-            using (var db = new ShopConnectionDB())
-            {
-                db.Insert(ab);
-            }
-        }
-        public static void DeleteLoaiSP(LoaiSanPham lsp)
-        {
-            lsp.TinhTrang = 0;
-            using (var db = new ShopConnectionDB())
-            {
-                db.Update(lsp);
-            }
-        }
-        public static void UnDeleteLoaiSP(LoaiSanPham lsp)
-        {
-            lsp.TinhTrang = 1;
-            using (var db = new ShopConnectionDB())
-            {
-                db.Update(lsp);
-            }
-        }
-        public static void EditLoaiSP(string id, LoaiSanPham lsp)
-        {
-            using (var db = new ShopConnectionDB())
-            {
-                db.Update(lsp, id);
-            }
-        }
-        public static LoaiSanPham LSp(string id)
-        {
-            using (var db = new ShopConnectionDB())
-            {
-                return db.SingleOrDefault<LoaiSanPham>("Select * From LoaiSanPham Where MaLoaiSP = @0", id);
+                return db.SingleOrDefault<GioHang>("Select * From GioHang Where Id = @0", id);
             }
         }
         public static void ThemGioHang(string MaSP, int sl, string idUser)
@@ -212,13 +127,6 @@ namespace ShopBUS
                     TinhTrang = 0
                 };
                 db.Insert(gh);
-            }
-        }
-        public static GioHang layGH(int id)
-        {
-            using (var db = new ShopConnectionDB())
-            {
-                return db.SingleOrDefault<GioHang>("Select * From GioHang Where Id = @0", id);
             }
         }
         public static void CapNhatGioHang(GioHang gh)
@@ -253,6 +161,8 @@ namespace ShopBUS
                 return db.Query<v_GioHang>("Select * From v_GioHang Where MaTK = @0",idUser);
             }
         }
+
+        //Nguoi dung
         public static UserInfo layThongTin(string id)
         {
             using (var db = new ShopConnectionDB())
@@ -260,21 +170,8 @@ namespace ShopBUS
                 return db.SingleOrDefault<UserInfo>("Select * From UserInfo Where IdUser = @0", id);
             }
         }
-        public static IEnumerable<SanPham> GetTop10byLSP(string LSP)
-        {
-            using (var db = new ShopConnectionDB())
-            {
-                return db.Query<SanPham>("Select TOP 10 * from SanPham where MaLoaiSanPham = @0 and MaSanPham in (select top 10 MaSP from HoaDon Group by MaSP ORDER BY SUM(SoLuong) DESC)", LSP);
-            }
-        }
 
-        public static IEnumerable<SanPham> GetTop10()
-        {
-            using (var db = new ShopConnectionDB())
-            {
-                return db.Query<SanPham>("Select * from SanPham where MaSanPham in (select top 10 MaSP from HoaDon Group by MaSP ORDER BY SUM(SoLuong) DESC)");
-            }
-        }
+        //Binh luan
         public static void ThemBinhLuan(BinhLuan cmt)
         {
             using (var db = new ShopConnectionDB())
