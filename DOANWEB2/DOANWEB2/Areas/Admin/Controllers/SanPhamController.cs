@@ -108,7 +108,7 @@ namespace DOANWEB2.Areas.Admin.Controllers
         public ActionResult Edit(string id, SanPham sp)
         {
             var spTam = ShopBUS.BUS.SanPham(id);
-            sp.HinhAnh = spTam.HinhAnh;
+            sp = spTam;
             try
             {
                 var hpf = HttpContext.Request.Files[0];
