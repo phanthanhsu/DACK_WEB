@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminIndex.cshtml";
+}
+
+<table>
+    <tr>
+        <th>Mã Đơn Hàng</th>
+        <th>Tên Người Đặt</th>
+        <th>Tên Sản Phẩm</th>
+        <th>Số Lượng</th>
+        <th>Tổng Tiền</th>
+        <th>Ngày Đặt</th>
+        <th>Tình Trạng</th>
+        <th>Hành Động</th>
+    </tr>
+    @foreach (var item in ViewBag.DSDonHang)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Ten</td>
+            <td>@item.TenSanPham</td>
+            <td>@item.SoLuong</td>
+            <td>@item.TongCong</td>
+            <td>@item.NgayDat</td>
+            @if (item.TinhTrang == 0)
+            {
+                <td>Đang chờ duyệt</td>
+                <td>@Html.ActionLink("Duyệt Đơn", "Duyet", "DonHang", new { id = item.Id }, new { @onClick = "Duyet()", @class = "btn-primary" })</td>
+            }
+            else if (item.TinhTrang == 1)
+            {
+                <td>Chờ thanh toán</td>
+                <td><button disabled class="btn-default">Giao Hàng</button></td>
+            }
+            else if (item.TinhTrang == 2)
+            {
+                <td>Đã thanh toán</td>
+                <td>@Html.ActionLink("Giao Hàng", "Giao", "DonHang", new { id = item.Id }, new { @onClick = "Giao()", @class = "btn-primary" })</td>
+            }
+            else if (item.TinhTrang == 3)
+            {
+                <td>Đang giao</td>
+                <td>@Html.ActionLink("Hoàn Tất", "HoanTat", "DonHang", new { id = item.Id }, new { @onClick = "HoanTat()", @class = "btn-primary" })</td>
+            }
+            else
+            {
+                <td>Hoàn tất</td>
+                <td><button disabled style="padding: 0px 34px;" class="btn-danger">✓</button></td>
+            }
+        </tr>
+    }
+</table>
+<script>
+    function Duyet() {
+        alert("Duyệt đơn hàng thành công");
+    }
+    function Giao() {
+        alert("Đơn hàng đã đi giao");
+    }
+    function HoanTat() {
+        alert("Hoàn tất đon hàng");
+    }
+</script>

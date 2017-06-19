@@ -155,5 +155,59 @@ namespace ShopBUS
                 return db.Query<SanPham>("Select * from SanPham where MaSanPham in (select top 10 MaSP from HoaDon  Group by MaSP ORDER BY SUM(SoLuong) DESC)");
             }
         }
+
+        //Don hang
+        public static GioHang layGH(int id)
+        {
+            using (var db = new ShopConnectionDB())
+            {
+                return db.SingleOrDefault<GioHang>("Select * From GioHang Where Id = @0", id);
+            }
+        }
+
+        public static IEnumerable<V_DonHang> ListDonHang()
+        {
+            using (var db = new ShopConnectionDB())
+            {
+                return db.Query<V_DonHang>("Select * From V_DonHang");
+            }
+        }
+        public static V_DonHang layDonHang(int id)
+        {
+            using (var db = new ShopConnectionDB())
+            {
+                return db.SingleOrDefault<V_DonHang>("Select * From V_DonHang Where Id = @0", id);
+            }
+        }
+        public static void Duyet(V_DonHang ab)
+        {
+            using (var db = new ShopConnectionDB())
+            {
+                var dh = new GioHang();
+                dh = layGH(ab.Id);
+                dh.TinhTrang = 1;
+                db.Update(dh);
+            }
+        }
+        public static void Giao(V_DonHang ab)
+        {
+            using (var db = new ShopConnectionDB())
+            {
+                var dh = new GioHang();
+                dh = layGH(ab.Id);
+                dh.TinhTrang = 3;
+                db.Update(dh);
+            }
+        }
+        public static void HoanTat(V_DonHang ab)
+        {
+            using (var db = new ShopConnectionDB())
+            {
+                var dh = new GioHang();
+                dh = layGH(ab.Id);
+                dh.TinhTrang = 4;
+                db.Update(dh);
+            }
+        }
     }
 }

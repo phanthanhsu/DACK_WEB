@@ -195,11 +195,11 @@ namespace ShopBUS
                 db.Insert(cmt);
             }
         }
-        public static IEnumerable<BinhLuan> Lay10Cmt(string idsp)
+        public static IEnumerable<V_Comment> Lay10Cmt(string idsp)
         {
             using (var db = new ShopConnectionDB())
             {
-                return db.Query<BinhLuan>("select top 10 * from BinhLuan where idSP = @0", idsp);
+                return db.Query<V_Comment>("select top 10 * from V_Comment where idSP = @0", idsp);
             }
         }
     }

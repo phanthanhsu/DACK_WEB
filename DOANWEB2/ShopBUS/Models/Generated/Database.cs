@@ -274,6 +274,29 @@ namespace ShopConnection
 		[Column] public string DiaChi { get; set; }
 	}
     
+	[TableName("dbo.V_Comment")]
+	[ExplicitColumns]
+    public partial class V_Comment : ShopConnectionDB.Record<V_Comment>  
+    {
+		[Column] public string noidung { get; set; }
+		[Column] public DateTime ngay { get; set; }
+		[Column] public string idSP { get; set; }
+		[Column] public string Ten { get; set; }
+	}
+    
+	[TableName("dbo.V_DonHang")]
+	[ExplicitColumns]
+    public partial class V_DonHang : ShopConnectionDB.Record<V_DonHang>  
+    {
+		[Column] public int? TinhTrang { get; set; }
+		[Column] public DateTime? NgayDat { get; set; }
+		[Column] public int? TongCong { get; set; }
+		[Column] public int? SoLuong { get; set; }
+		[Column] public string TenSanPham { get; set; }
+		[Column] public int Id { get; set; }
+		[Column] public string Ten { get; set; }
+	}
+    
 	[TableName("dbo.v_GioHang")]
 	[ExplicitColumns]
     public partial class v_GioHang : ShopConnectionDB.Record<v_GioHang>  
