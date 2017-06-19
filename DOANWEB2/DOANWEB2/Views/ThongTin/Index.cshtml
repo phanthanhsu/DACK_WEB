@@ -4,14 +4,16 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/LayoutIndex.cshtml";
 }
-<form>
+@using (Html.BeginForm("CapNhatTT", "ThongTin", FormMethod.Post))
+{
+    <input type="hidden" name="IdUser" value="@Model.IdUser" />
     <label> ID của account: </label>
     <h3>@Model.IdUser</h3>
     <label> Tên :</label>
-    <input type="text" name="Ten" value=""/>
+    <input type="text" name="Ten" value="@Model.Ten" required/>
     <label>Điện thoại:</label>
-    <input type="number" name="DienThoai" value=""/>
+    <input type="number" name="DienThoai" value="@Model.DienThoai" required/>
     <label> Địa Chỉ:</label>
-    <input type="text" name="DiaChi" value=""/>
+    <input type="text" name="DiaChi" value="@Model.DiaChi" required/>
     <input type="submit" name="Submit" value="Cập Nhật" />
-</form>
+}

@@ -170,6 +170,22 @@ namespace ShopBUS
                 return db.SingleOrDefault<UserInfo>("Select * From UserInfo Where IdUser = @0", id);
             }
         }
+        public static void InsertTT (string id)
+        {
+            using (var db = new ShopConnectionDB())
+            {
+                UserInfo u = new UserInfo();
+                u.IdUser = id;
+                db.Insert(u);
+            }
+        }
+        public static void UpdateTT(UserInfo u)
+        {
+            using (var db = new ShopConnectionDB())
+            {
+                db.Update(u);
+            }
+        }
 
         //Binh luan
         public static void ThemBinhLuan(BinhLuan cmt)
