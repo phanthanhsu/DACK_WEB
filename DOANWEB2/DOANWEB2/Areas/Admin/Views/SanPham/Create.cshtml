@@ -31,7 +31,7 @@
         <label>Nhà Sản Xuất:</label>
         <input name="NhaSanXuat" type="text" placeholder="Nhà Sản Xuất" required/>
         <label>Loại Sản Phẩm:</label>
-        @Html.Partial("_LoaiSP", ShopBUS.BUS.ListMenu())
+        @Html.Partial("_LoaiSP", ShopBUS.AdminBUS.ListMenuAdmin())
         <label>Hình Mặc Định:</label>
         <input name="HinhAnh" id="uploadImage" type="File" onchange="PreviewImage();" />
         <img id="uploadPreview" style="width: 200px;" />

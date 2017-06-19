@@ -151,6 +151,13 @@ namespace ShopBUS
         {
             using (var db = new ShopConnectionDB())
             {
+                var hd = new HoaDon();
+                hd.MaKH = gh.MaTK;
+                hd.MaSP = gh.MaSp;
+                hd.SoLuong = gh.SoLuong;
+                hd.TongTien = gh.TongCong;
+                hd.NgayThanhToan = DateTime.Now;
+                db.Insert(hd);
                 db.Update(gh);
             }
         }
@@ -163,6 +170,7 @@ namespace ShopBUS
         }
 
         //Nguoi dung
+
         public static UserInfo layThongTin(string id)
         {
             using (var db = new ShopConnectionDB())
